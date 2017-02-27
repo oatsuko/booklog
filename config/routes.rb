@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # get 'books/index'
   resources :books
   resources :bookmarks, only: [:create, :destroy]
+  resources :reviews, only: [:create, :destroy]
   devise_for :users
   
   if Rails.env.development?
