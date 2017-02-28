@@ -9,6 +9,11 @@
 
   <hr>
 
+  <ul class="category_list">
+    <% @categories. each do |category| %>
+    <% end %>
+  </ul>
+  
  <% if  user_signed_in? %>
     <div class="filter">
       <div <%= 'class=bold' unless params[:ft] %>><%= link_to '全て', root_path %></div>
