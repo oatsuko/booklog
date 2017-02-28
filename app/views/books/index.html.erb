@@ -8,20 +8,24 @@
   <%= render 'books/social_buttons', url: request.url %>
 
   <hr>
-
-  <ul class="category_list">
-    <% @categories. each do |category| %>
-    <% end %>
-  </ul>
   
- <% if  user_signed_in? %>
-    <div class="filter">
-      <div <%= 'class=bold' unless params[:ft] %>><%= link_to '全て', root_path %></div>
-      <div <%= 'class=bold' if params[:ft] && params[:ft] == 'my' %>><%= link_to '登録したBook', root_path(ft: 'my') %></div>
-      <div <%= 'class=bold' if params[:ft] && params[:ft] == 'bookmark' %>><%= link_to 'ブックマーク', root_path(ft: 'bookmark') %></div>
-    </div>
-    <hr>
- <% end %>
+  <div class="filter">
+    <% if  user_signed_in? %>
+      <div class="filter">
+        <div <%= 'class=bold' unless params[:ft] %>><%= link_to '全て', root_path %></div>
+        <div <%= 'class=bold' if params[:ft] && params[:ft] == 'my' %>><%= link_to '登録したBook', root_path(ft: 'my') %></div>
+        <div <%= 'class=bold' if params[:ft] && params[:ft] == 'bookmark' %>><%= link_to 'ブックマーク', root_path(ft: 'bookmark') %></div>
+      </div>
+      <hr>
+    <% end %>
+    <% @categories. each do |category| %>
+      <div <%= 'class=bold' if params[:caid] && params[:caid] == category.id.to_s %>">
+        <%= link_to category.name, root_path(ft: params[:ft], caid: category.id) %> 
+      </div>
+    <% end %>
+  </div>
+  
+  <hr>
   
   <div>
     <%= button_to 'Bookを登録', new_book_path, method: :get, class: 'btn btn-primary' %>

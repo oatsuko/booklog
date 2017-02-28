@@ -12,4 +12,9 @@ class Book < ActiveRecord::Base
   validates :price, presence: true, numericality: true
   validates :publish_date, presence: true
   validates :category_id, presence: true
+  
+  scope :category_filter, -> category_id do
+    where(category_id: category_id) if category_id.present?
+  end
+  
 end
