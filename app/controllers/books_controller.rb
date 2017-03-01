@@ -12,8 +12,7 @@ class BooksController < ApplicationController
       @books = Book.includes(:bookmarks, :reviews, :user).order('updated_at DESC')
     end
     
-    
-      @categories = Category.all
+    @categories = Category.all
       if params[:caid]
         @books = @books.where(category_id: params[:caid])
       end
